@@ -3,12 +3,12 @@ http:
     nextcloud:
       rule: "Host(`nextcloud.haex.space`)"
       entrypoints:
-        - "https"
+        - "websecure"
       service: nextcloud
       middlewares:
         - nextcloud-chain
       tls:
-        certresolver: "letsencrypt"
+        options: default
 
   services:
     nextcloud:

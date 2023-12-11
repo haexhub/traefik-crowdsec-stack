@@ -1,7 +1,7 @@
 http:
   routers:
     nextcloud:
-      rule: "Host(`nextcloud.haex.space`)"
+      rule: "Host( {{ env `SERVICES_NEXTCLOUD_HOST_ADDRESS`}})"
       entrypoints:
         - "https"
       service: nextcloud

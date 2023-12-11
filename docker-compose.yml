@@ -96,7 +96,7 @@ services:
       - ./traefik/traefik.yml:/traefik.yml:ro
       - ./traefik/acme_letsencrypt.json:/acme_letsencrypt.json
       - ./traefik/tls_letsencrypt.json:/tls_letsencrypt.json
-      - ./traefik/dynamic_conf.yml:/dynamic_conf.yml
+      - ./traefik/file_provider:/file_provider
 
   traefik_crowdsec_bouncer:
     # Der Name des Containers, der aus diesem Service erzeugt wird

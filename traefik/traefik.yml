@@ -8,7 +8,7 @@ metrics:
 certificatesResolvers:
   http_resolver:
     acme:
-      email: { { env "LETSENCRYPT_MAIL" } }
+      email: "example@domain.tld"
       storage: "acme_letsencrypt.json"
       httpChallenge:
         entryPoint: web

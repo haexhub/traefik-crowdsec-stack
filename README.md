@@ -184,22 +184,14 @@ docker compose down
 So, oder so ähnlich sollte die Ausgabe aussehen:
 
 ```
-[+] Running 3/3
- ✔ Network crowdsec    Created                                                                                                                                                                                0.1s
- ✔ Network proxy       Created                                                                                                                                                                                0.1s
- ✔ Container crowdsec  Started                                                                                                                                                                                0.4s
 Api key for 'traefik-crowdsec-bouncer':
 
    ee21c448d67e04550dec5b07b42ad6ee
 
 Please keep this key since you will not be able to retrieve it!
-[+] Running 3/3
- ✔ Container crowdsec  Removed                                                                                                                                                                               10.2s
- ✔ Network crowdsec    Removed                                                                                                                                                                                0.2s
- ✔ Network proxy       Removed
 ```
 
-Nun speichern wir uns den generierten Schlüssel (in diesem Beispiel: ee21c448d67e04550dec5b07b42ad6ee) in die Zwischenablage und fügen via nano in unsere config/traefik-crowdsec-bouncer.env.
+Nun speichern wir uns den generierten Schlüssel (in diesem Beispiel: ee21c448d67e04550dec5b07b42ad6ee) in die Zwischenablage und fügen ihn in unsere config/traefik-crowdsec-bouncer.env ein.
 
 ### Traefik kontrollieren
 

@@ -44,8 +44,6 @@ services:
     depends_on:
       crowdsec:
         condition: service_healthy
-    # Umgebungsvariablen für den Container.
-    #env_file: ./config/traefik.env
     # Hostname des Traefik-Containers, kann über eine Umgebungsvariable angepasst werden.
     hostname: ${SERVICES_TRAEFIK_HOSTNAME:-traefik}
     # Gesundheitsüberprüfung für den Traefik-Service

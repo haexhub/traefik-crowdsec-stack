@@ -90,7 +90,7 @@ Diese Umgebungsvariablen sind entscheidend für die Konfiguration von CrowdSec. 
 Um die Konfigurationsdateien von CrowdSec zu generieren, müssen wir den CrowdSec-Dienst kurz starten. Dazu wechseln wir zunächst in das Verzeichnis unserer Docker-Compose-Datei für den Traefik-CrowdSec-Stack und starten dann den Dienst:
 
 ```
-    cd /opt/containers/traefik-crowdsec-stack
+    # cd /opt/containers/traefik-crowdsec-stack
     docker compose up crowdsec -d && docker compose down
 ```
 
@@ -175,7 +175,7 @@ Es gibt eine Vielzahl an verschiedenen Bouncern für diverse Einsatzgebiete: Es 
 In der config/traefik-crowdsec-bouncer.env haben wir die Variable CROWDSEC_BOUNCER_API_KEY angelegt und um diese mit einem Access-Token bzw. API-Key auch nutzen zu können müssen wir diesen wie folgt generieren:
 
 ```
-cd /opt/containers/traefik-crowdsec-stack
+# cd /opt/containers/traefik-crowdsec-stack
 docker compose up crowdsec -d
 docker compose exec -t crowdsec cscli bouncers add traefik-crowdsec-bouncer
 docker compose down
@@ -255,7 +255,7 @@ Also, gönn dir eine kleine Pause, streck dich mal und gönn deinen Augen eine k
 Bereit?
 
 ```
-cd /opt/containers/traefik-crowdsec-stack
+# cd /opt/containers/traefik-crowdsec-stack
 docker compose up -d
 ```
 
@@ -270,7 +270,7 @@ Natürlich sollten wir zwischendurch und gemäß dieser Anleitung immer wieder �
 Wir haben den Container ja bereits gestartet. Als erstes überprüfen wir, ob alle Container als “healthy” (gesund) markiert sind:
 
 ```
-cd /opt/containers/traefik-crowdsec-stack
+# cd /opt/containers/traefik-crowdsec-stack
 docker compose ps
 ```
 
@@ -351,10 +351,10 @@ Wir befinden uns im Abschnitt “http” -> “middlewares”.
 Hier fügen wir nun die Konfiguration für unsere Schutzmaßnahmen hinzu:
 
 ```
-  traefikAuth:
-    basicAuth:
-    users:
-      - "DeinUsername:$apr1$xSRxT4UY$wk42WRgVzBW5Pf69sS5aT."
+traefikAuth:
+  basicAuth:
+  users:
+    - "DeinUsername:$apr1$xSRxT4UY$wk42WRgVzBW5Pf69sS5aT."
 ```
 
 Hierbei ersetzen wir natürlich “DeinUsername” und “$apr1$xSRxT4UY$wk42WRgVzBW5Pf69sS5aT.” durch die zuvor generierten Werte.
@@ -410,53 +410,53 @@ http:
 Im letzten Schritt müssen wir Anpassungen in der Datei docker-compose.yml vornehmen. Öffnen Sie die Datei mit einem Texteditor.
 
 ```
-  traefik:
-    container_name: ${SERVICES_TRAEFIK_CONTAINER_NAME:-traefik}
-    depends_on:
-      crowdsec:
-        condition: service_healthy
-    env_file: ./config/traefik.env
-    hostname: ${SERVICES_TRAEFIK_HOSTNAME:-traefik}
-    healthcheck:
-      test: ["CMD", "traefik", "healthcheck", "--ping"]
-      interval: 10s
-      timeout: 1s
-      retries: 3
-      start_period: 10s
-    image: ${SERVICES_TRAEFIK_IMAGE:-traefik}:${SERVICES_TRAEFIK_IMAGE_VERSION:-2.10}
-    labels:
-      traefik.docker.network: proxy
-      traefik.enable: "true"
-      traefik.http.routers.traefik.entrypoints: websecure
-      traefik.http.routers.traefik.middlewares: default@file
-      traefik.http.routers.traefik.rule: Host(${SERVICES_TRAEFIK_LABELS_TRAEFIK_HOST})
-      traefik.http.routers.traefik.service: api@internal
-      traefik.http.routers.traefik.tls: "true"
-      traefik.http.routers.traefik.tls.certresolver: http_resolver
-      traefik.http.services.traefik.loadbalancer.sticky.cookie.httpOnly: "true"
-      traefik.http.services.traefik.loadbalancer.sticky.cookie.secure: "true"
-      traefik.http.routers.pingweb.rule: PathPrefix(`/ping`)
-      traefik.http.routers.pingweb.service: ping@internal
-      traefik.http.routers.pingweb.entrypoints: websecure
-    networks:
-      crowdsec:
-        ipv4_address: ${SERVICES_TRAEFIK_NETWORKS_CROWDSEC_IPV4:-172.31.254.253}
-      proxy:
-        ipv4_address: ${SERVICES_TRAEFIK_NETWORKS_PROXY_IPV4:-172.16.255.254}
-    ports:
-      - "80:80"
-      - "443:443"
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /var/log/traefik/:/var/log/traefik/
-      - ./traefik/traefik.yml:/traefik.yml:ro
-      - ./traefik/acme_letsencrypt.json:/acme_letsencrypt.json
-      - ./traefik/tls_letsencrypt.json:/tls_letsencrypt.json
-      - ./traefik/dynamic_conf.yml:/dynamic_conf.yml
+traefik:
+  container_name: ${SERVICES_TRAEFIK_CONTAINER_NAME:-traefik}
+  depends_on:
+    crowdsec:
+      condition: service_healthy
+  env_file: ./config/traefik.env
+  hostname: ${SERVICES_TRAEFIK_HOSTNAME:-traefik}
+  healthcheck:
+    test: ["CMD", "traefik", "healthcheck", "--ping"]
+    interval: 10s
+    timeout: 1s
+    retries: 3
+    start_period: 10s
+  image: ${SERVICES_TRAEFIK_IMAGE:-traefik}:${SERVICES_TRAEFIK_IMAGE_VERSION:-2.10}
+  labels:
+    traefik.docker.network: proxy
+    traefik.enable: "true"
+    traefik.http.routers.traefik.entrypoints: websecure
+    traefik.http.routers.traefik.middlewares: default@file
+    traefik.http.routers.traefik.rule: Host(${SERVICES_TRAEFIK_LABELS_TRAEFIK_HOST})
+    traefik.http.routers.traefik.service: api@internal
+    traefik.http.routers.traefik.tls: "true"
+    traefik.http.routers.traefik.tls.certresolver: http_resolver
+    traefik.http.services.traefik.loadbalancer.sticky.cookie.httpOnly: "true"
+    traefik.http.services.traefik.loadbalancer.sticky.cookie.secure: "true"
+    traefik.http.routers.pingweb.rule: PathPrefix(`/ping`)
+    traefik.http.routers.pingweb.service: ping@internal
+    traefik.http.routers.pingweb.entrypoints: websecure
+  networks:
+    crowdsec:
+      ipv4_address: ${SERVICES_TRAEFIK_NETWORKS_CROWDSEC_IPV4:-172.31.254.253}
+    proxy:
+      ipv4_address: ${SERVICES_TRAEFIK_NETWORKS_PROXY_IPV4:-172.16.255.254}
+  ports:
+    - "80:80"
+    - "443:443"
+  restart: unless-stopped
+  security_opt:
+    - no-new-privileges:true
+  volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /var/log/traefik/:/var/log/traefik/
+    - ./traefik/traefik.yml:/traefik.yml:ro
+    - ./traefik/acme_letsencrypt.json:/acme_letsencrypt.json
+    - ./traefik/tls_letsencrypt.json:/tls_letsencrypt.json
+    - ./traefik/dynamic_conf.yml:/dynamic_conf.yml
 ```
 
 Innerhalb dieses Abschnitts finden Sie unter “labels” das Label:

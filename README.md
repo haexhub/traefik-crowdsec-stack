@@ -6,6 +6,60 @@ Traefik Services via CrowdSec sichern
 Einzelner Stack
 Wie wir unsere Services mit Traefik verfügbar machen
 
+## TLDR
+
+```
+git clone git@github.com:haexhub/traefik-crowdsec-stack.git
+```
+
+```
+chmod 600 /opt/containers/traefik-crowdsec-stack/traefik/{acme_letsencrypt.json,tls_letsencrypt.json}
+```
+
+```
+vim traefik/traefik.yml
+```
+
+Mail Adressen für http resolver und tls resolver anpassen
+
+```
+docker compose up crowdsec -d && docker compose down
+```
+
+Füge folgendes zu crowdsec/config/acquis.yaml hinzu
+
+```
+---
+filenames:
+  - /var/log/traefik/*.log
+labels:
+  type: traefik
+---
+```
+
+```
+# cd /opt/containers/traefik-crowdsec-stack
+docker compose up crowdsec -d
+docker compose exec -t crowdsec cscli bouncers add traefik-crowdsec-bouncer
+docker compose down
+```
+
+So, oder so ähnlich sollte die Ausgabe aussehen:
+
+```
+Api key for 'traefik-crowdsec-bouncer':
+
+   ee21c448d67e04550dec5b07b42ad6ee
+
+Please keep this key since you will not be able to retrieve it!
+```
+
+```
+vim config/traefik-crowdsec-bouncer.env
+```
+
+Füge den generierten Schlüssel (in diesem Beispiel: ee21c448d67e04550dec5b07b42ad6ee) in unsere config/traefik-crowdsec-bouncer.env ein.
+
 ## Voraussetzung
 
 Docker mit Docker Compose installiert

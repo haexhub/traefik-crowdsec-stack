@@ -52,7 +52,7 @@ um die Struktur zu überprüfen. Die Ausgabe sollte folgendermaßen aussehen:
 ## DOTENV Konfiguration
 
 Kopiere die die .env.example Datei und benne sie zu .env um. Anschließend muss diese noch etwas angepasst werden.
-Bis auf eine Ausnahme ist dieses Beispielsetup bereits optimiert und erfordert keine weiteren Anpassungen, um richtig zu funktionieren. Die einzige Zeile, die du anpassen musst, ist SERVICES_TRAEFIK_LABELS_TRAEFIK_HOST. Hier definierst du die eigene Domain für das Traefik-Dashboard. Denke daran, `traefik.DeineDomainHier.de` durch die tatsächliche Domain zu ersetzen, welche auch via A oder CNAME auf den richtigen Server zeigt, die du für das Traefik-Dashboard verwenden möchtest.
+Bis auf eine Ausnahme ist dieses Beispielsetup bereits optimiert und erfordert keine weiteren Anpassungen, um richtig zu funktionieren. Die einzige Zeile, die du anpassen musst, ist `SERVICES_TRAEFIK_LABELS_TRAEFIK_HOST`. Hier definierst du die eigene Domain für das Traefik-Dashboard. Denke daran,`traefik.DeineDomainHier.de` durch die tatsächliche Domain zu ersetzen, welche auch via A oder CNAME auf den richtigen Server zeigt, die du für das Traefik-Dashboard verwenden möchtest.
 
 Achtung! Die `` sind unabdingbar! Hier könnten aber auch mehrere Domains definiert werden:
 

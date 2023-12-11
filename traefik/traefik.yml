@@ -8,13 +8,13 @@ metrics:
 certificatesResolvers:
   http_resolver:
     acme:
-      email: "hexxx@ok.de"
+      email: "example@domain.tld"
       storage: "acme_letsencrypt.json"
       httpChallenge:
         entryPoint: web
   tls_resolver:
     acme:
-      email: "hexxx@ok.de"
+      email: "example@domain.tld"
       storage: "tls_letsencrypt.json"
       tlsChallenge: {}
 entryPoints:

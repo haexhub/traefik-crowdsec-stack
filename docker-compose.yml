@@ -45,7 +45,7 @@ services:
       crowdsec:
         condition: service_healthy
     # Umgebungsvariablen für den Container.
-    env_file: ./config/traefik.env
+    #env_file: ./config/traefik.env
     # Hostname des Traefik-Containers, kann über eine Umgebungsvariable angepasst werden.
     hostname: ${SERVICES_TRAEFIK_HOSTNAME:-traefik}
     # Gesundheitsüberprüfung für den Traefik-Service
@@ -83,8 +83,8 @@ services:
         ipv4_address: ${SERVICES_TRAEFIK_NETWORKS_PROXY_IPV4:-172.16.255.254}
     # Die Ports, die diesem Service zugeordnet sind
     ports:
-      - "80:80"  # HTTP
-      - "443:443"  # HTTPS
+      - "80:80" # HTTP
+      - "443:443" # HTTPS
     # Der Restart-Policy dieses Service
     restart: unless-stopped
     # Sicherheitsoptionen für diesen Service
@@ -121,7 +121,6 @@ services:
     # Restart-Strategie für den Container. 'unless-stopped' bedeutet, dass der Container immer neu gestartet wird, es sei denn, er wird manuell gestoppt
     restart: unless-stopped
 
-
 networks:
   # Definition des 'proxy' Netzwerks
   proxy:
@@ -133,7 +132,7 @@ networks:
     ipam:
       # Konfiguration des IP-Adress-Subnetzes für das Netzwerk
       config:
-      - subnet: ${NETWORKS_PROXY_SUBNET_IPV4:-172.30.0.0/16}
+        - subnet: ${NETWORKS_PROXY_SUBNET_IPV4:-172.30.0.0/16}
     # Wenn 'attachable' auf 'true' gesetzt ist, können Standalone-Container an dieses Netzwerk angehängt werden
     attachable: true
   # Definition des 'crowdsec' Netzwerks
@@ -146,6 +145,6 @@ networks:
     ipam:
       # Konfiguration des IP-Adress-Subnetzes für das Netzwerk
       config:
-      - subnet: ${NETWORKS_CROWDSEC_SUBNET_IPV4:-172.31.0.0/16}
+        - subnet: ${NETWORKS_CROWDSEC_SUBNET_IPV4:-172.31.0.0/16}
     # Wenn 'attachable' auf 'true' gesetzt ist, können Standalone-Container an dieses Netzwerk angehängt werden
     attachable: true

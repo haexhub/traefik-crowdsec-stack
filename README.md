@@ -73,7 +73,7 @@ traefik.go:81: command traefik error: unable to initialize certificates resolver
 
 ## CrowdSec-Konfiguration
 
-Zur Konfiguration von CrowdSec bearbeiten wir die Datei config/crowdsec.env. Diese Datei ist essentiell, um die Umgebungsvariablen übersichtlich und zentral zu definieren. Durch die Auslagerung dieser Definitionen in eine separate Datei, bleibt unser Setup klar strukturiert und wartungsfreundlich.
+Die config/traefik-crowdsec.env ist bereits gesetzt. Hier eine kurze Erklärung dazu:
 
 - PGID: Dies steht für “Group ID” und bestimmt, unter welcher Gruppen-ID der CrowdSec-Prozess ausgeführt wird. Im vorliegenden Fall ist das die Gruppen-ID “1000”. Die Gruppen-ID sollte der ID einer existierenden Gruppe in deinem System entsprechen, die die benötigten Zugriffsrechte hat.
 - COLLECTIONS: Dies ist eine Liste von sogenannten “Collection”-Namen. Eine Collection in CrowdSec ist eine Gruppe von Szenarien, Parsern und Post-Overflows, die einen bestimmten Zweck erfüllen. Im vorliegenden Fall werden die folgenden Collections verwendet:

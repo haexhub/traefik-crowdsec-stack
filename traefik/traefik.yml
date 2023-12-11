@@ -17,6 +17,7 @@ certificatesResolvers:
       email: "example@domain.tld"
       storage: "tls_letsencrypt.json"
       tlsChallenge: {}
+
 entryPoints:
   ping:
     address: ":88"
@@ -66,6 +67,8 @@ providers:
   file:
     filename: "./dynamic_conf.yml"
     watch: true
+  file:
+    filename: "./nextcloud_conf.yml"
   providersThrottleDuration: 10s
 
 log:

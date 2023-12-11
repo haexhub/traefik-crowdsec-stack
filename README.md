@@ -49,6 +49,12 @@ um die Struktur zu überprüfen. Die Ausgabe sollte folgendermaßen aussehen:
     └── traefik.yml
 ```
 
+Jetzt müssen nur nur die Berechtigungen richtig gesetzte werden:
+
+```
+chmod 600 /opt/containers/traefik-crowdsec-stack/traefik/{acme_letsencrypt.json,tls_letsencrypt.json}
+```
+
 ## DOTENV Konfiguration
 
 Kopiere die die .env.example Datei und benne sie zu .env um. Anschließend muss diese noch etwas angepasst werden.

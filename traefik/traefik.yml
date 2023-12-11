@@ -65,10 +65,8 @@ providers:
     exposedByDefault: false
     network: "proxy"
   file:
-    filename: "./dynamic_conf.yml"
+    directory: "./file_provider"
     watch: true
-  file:
-    filename: "./nextcloud_conf.yml"
   providersThrottleDuration: 10s
 
 log:

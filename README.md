@@ -14,31 +14,9 @@ Docker mit Docker Compose installiert
 
 In dieser aktualisierten Anleitung konzentrieren wir uns darauf, Traefik, CrowdSec und alle damit verbundenen Komponenten in einem einzigen Stack zu definieren. Warum? Ganz einfach, die Erfahrung hat gezeigt, dass die Startreihenfolge der Container durchaus relevant sein kann. Mit einem Full-Stack-Ansatz kann ich diesen Aspekt besser steuern und somit eine optimale Performance und Funktionalität gewährleisten.
 
-## Verzeichnisse / Dateien anlegen
+## clone Repository
 
-Beginnen wir mit der Erstellung der benötigten Verzeichnisse für den Full-Stack. Im Folgenden wird das Hauptverzeichnis traefik-crowdsec-stack erstellt, und dann darin Unterordner für traefik, crowdsec, config und zwei zusätzliche Unterordner für config und data in crowdsec.
-
-```
-# Hauptverzeichnis erstellen und zusätzliche Unterordner in 'crowdsec' erstellen
-mkdir -p /opt/containers/traefik-crowdsec-stack/{traefik,crowdsec/{config,data},config}
-
-# Ins Hauptverzeichnis wechseln
-cd /opt/containers/traefik-crowdsec-stack
-```
-
-Im nächsten Schritt erzeugen wir die notwendigen Dateien und setzen die korrekten Zugriffsrechte.
-
-```
-# .env Datei im Hauptverzeichnis erstellen
-touch /opt/containers/traefik-crowdsec-stack/.env
-
-# Umgebungsspezifische .env Dateien in 'config' erstellen
-touch /opt/containers/traefik-crowdsec-stack/config/{crowdsec.env,traefik.env,traefik-crowdsec-bouncer.env}
-
-# Zusätzliche Dateien in 'traefik' erstellen und Zugriffsrechte für bestimmte Dateien festlegen
-touch /opt/containers/traefik-crowdsec-stack/traefik/{acme_letsencrypt.json,traefik.yml,dynamic_conf.yml,tls_letsencrypt.json}
-chmod 600 /opt/containers/traefik-crowdsec-stack/traefik/{acme_letsencrypt.json,tls_letsencrypt.json}
-```
+Wir wechseln in das Verzeichnis `/opt/containers` und führen `git clone git@github.com:haexhub/traefik-crowdsec-stack.git` aus.
 
 Als nächstes möchten wir sicherstellen, dass alles korrekt angelegt wurde. Hierfür verwenden wir den tree Befehl. Falls das tree Programm noch nicht installiert ist, können wir es wie folgt installieren:
 
@@ -71,17 +49,9 @@ um die Struktur zu überprüfen. Die Ausgabe sollte folgendermaßen aussehen:
     └── traefik.yml
 ```
 
-Wenn eure Ausgabe genau so aussieht, habt ihr alles richtig gemacht und wir können weitermachen. Wenn nicht, überprüft bitte die vorherigen Schritte.
-
-Bevor wir diesen Abschnitt abschließen, sollten wir einige wichtige Unterschiede zu meiner alten Anleitung hervorheben:
-
-Datenstruktur: Die Art und Weise, wie wir unsere Daten strukturieren, hat sich erheblich verändert. Wir nutzen jetzt eine ordentlichere und effizientere Struktur, die es uns ermöglicht, die Dinge besser zu organisieren und zu verwalten.
-Verwendung von .env Dateien: In dieser Anleitung verwenden wir .env Dateien, um Umgebungsvariablen zu speichern. Dies ist eine übliche Praxis, die uns hilft, sensitive Informationen sicher und organisiert zu halten, und es uns ermöglicht, verschiedene Einstellungen für verschiedene Umgebungen zu haben.
-TLS Resolver: Ein zusätzliches Feature dieser Anleitung ist die Verfügbarkeit eines TLS Resolvers. Dies ist ein mächtiges Werkzeug, das wir im weiteren Verlauf der Anleitung detailliert behandeln werden.
-
 ## DOTENV Konfiguration
 
-Kopiere die die .env.example Datei aus und benne sie zu .env um. Anschließend muss diese noch etwas angepasst werden.
+Kopiere die die .env.example Datei und benne sie zu .env um. Anschließend muss diese noch etwas angepasst werden.
 Bis auf eine Ausnahme ist dieses Beispielsetup bereits optimiert und erfordert keine weiteren Anpassungen, um richtig zu funktionieren. Die einzige Zeile, die du anpassen musst, ist SERVICES_TRAEFIK_LABELS_TRAEFIK_HOST. Hier definierst du die eigene Domain für das Traefik-Dashboard. Denke daran, `traefik.DeineDomainHier.de` durch die tatsächliche Domain zu ersetzen, welche auch via A oder CNAME auf den richtigen Server zeigt, die du für das Traefik-Dashboard verwenden möchtest.
 
 Achtung! Die `` sind unabdingbar! Hier könnten aber auch mehrere Domains definiert werden:

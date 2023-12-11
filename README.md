@@ -1,14 +1,14 @@
 ## Zielsetzung
 
-    Traefik v2 installieren und konfigurieren
-    Crowdsec installieren und konfigurieren
-    Traefik Services via CrowdSec sichern
-    Einzelner Stack
-    Wie wir unsere Services mit Traefik verfügbar machen
+Traefik v2 installieren und konfigurieren
+Crowdsec installieren und konfigurieren
+Traefik Services via CrowdSec sichern
+Einzelner Stack
+Wie wir unsere Services mit Traefik verfügbar machen
 
 ## Voraussetzung
 
-    Docker mit Docker Compose installiert
+Docker mit Docker Compose installiert
 
 ## Traefik + CrowdSec im Stack vorbereiten
 
@@ -75,9 +75,9 @@ Wenn eure Ausgabe genau so aussieht, habt ihr alles richtig gemacht und wir kön
 
 Bevor wir diesen Abschnitt abschließen, sollten wir einige wichtige Unterschiede zu meiner alten Anleitung hervorheben:
 
-    Datenstruktur: Die Art und Weise, wie wir unsere Daten strukturieren, hat sich erheblich verändert. Wir nutzen jetzt eine ordentlichere und effizientere Struktur, die es uns ermöglicht, die Dinge besser zu organisieren und zu verwalten.
-    Verwendung von .env Dateien: In dieser Anleitung verwenden wir .env Dateien, um Umgebungsvariablen zu speichern. Dies ist eine übliche Praxis, die uns hilft, sensitive Informationen sicher und organisiert zu halten, und es uns ermöglicht, verschiedene Einstellungen für verschiedene Umgebungen zu haben.
-    TLS Resolver: Ein zusätzliches Feature dieser Anleitung ist die Verfügbarkeit eines TLS Resolvers. Dies ist ein mächtiges Werkzeug, das wir im weiteren Verlauf der Anleitung detailliert behandeln werden.
+Datenstruktur: Die Art und Weise, wie wir unsere Daten strukturieren, hat sich erheblich verändert. Wir nutzen jetzt eine ordentlichere und effizientere Struktur, die es uns ermöglicht, die Dinge besser zu organisieren und zu verwalten.
+Verwendung von .env Dateien: In dieser Anleitung verwenden wir .env Dateien, um Umgebungsvariablen zu speichern. Dies ist eine übliche Praxis, die uns hilft, sensitive Informationen sicher und organisiert zu halten, und es uns ermöglicht, verschiedene Einstellungen für verschiedene Umgebungen zu haben.
+TLS Resolver: Ein zusätzliches Feature dieser Anleitung ist die Verfügbarkeit eines TLS Resolvers. Dies ist ein mächtiges Werkzeug, das wir im weiteren Verlauf der Anleitung detailliert behandeln werden.
 
 ## DOTENV Konfiguration
 

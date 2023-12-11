@@ -71,6 +71,7 @@ providers:
 log:
   level: "INFO"
   filePath: "/var/log/traefik/traefik.log"
+
 accessLog:
   filePath: "/var/log/traefik/access.log"
   bufferingSize: 100

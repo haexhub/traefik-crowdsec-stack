@@ -60,6 +60,12 @@ vim config/traefik-crowdsec-bouncer.env
 
 Füge den generierten Schlüssel (in diesem Beispiel: ee21c448d67e04550dec5b07b42ad6ee) in unsere config/traefik-crowdsec-bouncer.env ein.
 
+Unblock banned ip
+
+```
+docker compose exec -t crowdsec cscli decisions delete -i
+```
+
 ## Voraussetzung
 
 Docker mit Docker Compose installiert
